@@ -1,0 +1,85 @@
+﻿
+  server.py:28:
+  server.py:29:
+  server.py:30:
+> server.py:31:OLLAMA_URL = "http://localhost:11434/api/generate"
+  server.py:32:
+  server.py:33:
+  server.py:34:
+  server.py:35:
+  server.py:36:
+  server.py:37:# ============================================================
+  server.py:38:
+  server.py:39:# ULTRON BRAIN CONFIGURATION
+  server.py:1319:# ASK ULTRON
+  server.py:1320:# ============================================================
+  server.py:1321:
+> server.py:1322:def ask_ultron(prompt):
+  server.py:1323:    global conversation_history
+  server.py:1324:    brain=BRAINS[current_brain]; task=classify_task(prompt); research_results=[]
+  server.py:1325:    learn_user_identity(prompt); 
+conversation_history.append({"role":"user","content":prompt})
+  server.py:1326:    history_text="\n".join(f"{m['role'].upper()}: {m['content']}" for m in 
+conversation_history[-10:])
+  server.py:1327:    if task["research_required"]:
+  server.py:1328:        for query in build_research_queries(prompt,task): 
+research_results.append(internet_search(query,task["max_results"]))
+  server.py:1329:    ranked=rank_search_results(research_results); web_used=bool(ranked); 
+research_context=format_research_context(research_results)
+  server.py:1330:    
+identity_context=f"\n{CORE_IDENTITY}\n{get_user_identity_context()}\n{get_brain_identity()}\n" if 
+_has_any_pattern(prompt.lower(),IDENTITY_PATTERNS) else ""
+  server.py:1365:"""
+  server.py:1366:    payload={"model":brain["model"],"prompt":full_prompt,"stream":False}
+  server.py:1367:    try:
+> server.py:1368:        data=json.dumps(payload).encode("utf-8"); 
+request=urllib.request.Request(OLLAMA_URL,data=data,headers={"Content-Type":"application/json"})
+  server.py:1369:        with urllib.request.urlopen(request) as response: 
+result=json.loads(response.read().decode("utf-8"))
+  server.py:1370:        answer=clean_model_answer(result.get("response","")) or "I didn't receive 
+a response from the model."
+  server.py:1371:    except Exception as e: answer=f"ULTRON connection error: {e}"
+  server.py:1372:    conversation_history.append({"role":"assistant","content":answer}); return 
+answer
+  server.py:1373:
+  server.py:1374:
+  server.py:1375:# ============================================================
+  server.py:1376:# HTTP SERVER
+  server.py:1544:
+  server.py:1545:
+  server.py:1546:
+> server.py:1547:    def do_GET(self):
+  server.py:1548:
+  server.py:1549:
+  server.py:1550:
+  server.py:1551:        # ----------------------------------------------------
+  server.py:1552:
+  server.py:1553:        # Main interface
+  server.py:1554:
+  server.py:1555:        # ----------------------------------------------------
+  server.py:1984:
+  server.py:1985:
+  server.py:1986:
+> server.py:1987:    def do_POST(self):
+  server.py:1988:
+  server.py:1989:
+  server.py:1990:
+  server.py:1991:        # ----------------------------------------------------
+  server.py:1992:
+  server.py:1993:        # Read request
+  server.py:1994:
+  server.py:1995:        # ----------------------------------------------------
+  server.py:2096:
+  server.py:2097:
+  server.py:2098:
+> server.py:2099:        if self.path == "/ask":
+  server.py:2100:
+  server.py:2101:
+  server.py:2102:
+  server.py:2103:            prompt = data.get(
+  server.py:2104:
+  server.py:2105:                "prompt",
+  server.py:2106:
+  server.py:2107:                ""
+
+

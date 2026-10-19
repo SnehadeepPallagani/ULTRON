@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ULTRON</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div class="scrim" id="scrim"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 28 9v14L16 30 4 23V9z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="4" fill="var(--gold)"/></svg>
+      <span class="brand-name">ULTRON</span>
+      <button class="icon-btn" id="collapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar">&#x2039;</button>
+    </div>
+
+<nav class="nav">
+  <button class="nav-item primary" id="newChatBtn">
+    + <span>New Chat</span>
+  </button>
+
+  <label class="search">
+    <span class="sr">Search chats</span>
+    <input id="searchInput" type="search" placeholder="Search chats">
+  </label>
+
+  <button class="nav-item" id="projectsBtn"
+          aria-expanded="false" aria-controls="projectsPanel">
+    Projects <em class="tag" id="projectsCount">0</em>
+  </button>
+
+  <div class="projects" id="projectsPanel" hidden>
+    <div class="conv proj-all" id="allChatsRow">
+      <button class="open" id="allChatsBtn" type="button">All chats</button>
+    </div>
+
+    <div id="projectList"></div>
+
+    <button class="proj-create" id="createProjectBtn" type="button">
+      + Create project
+    </button>
+  </div>
+
+  <!-- Keep only this Tools button -->
+  <button class="nav-item" id="toolsBtn" type="button">
+    <span aria-hidden="true">⚒</span>
+    <span>Tools</span>
+  </button>
+</nav>
+
+    <div class="viewbar" id="viewbar" hidden>
+      <span class="viewbar-text" id="viewbarText"></span>
+      <button class="viewbar-back" id="viewbarBack" type="button">All chats</button>
+    </div>
+    <div class="history" id="history" aria-label="Conversations"></div>
+    <div class="account">
+      <div class="avatar" aria-hidden="true">?</div>
+      <div class="acct-text"><strong>Guest</strong><small>Sign-in not connected</small></div>
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">&#9881;</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="openSidebarBtn" aria-label="Open sidebar">&#9776;</button>
+      <div class="title" id="chatTitle">New chat</div>
+    </header>
+
+<section class="tools-page" id="toolsPage" hidden>
+  <div class="tools-heading">
+    <p class="tools-eyebrow">ULTRON NEXUS / APPLICATIONS</p>
+    <h1>Tools</h1>
+    <p>Your workspace for building and creating.</p>
+  </div>
+
+  <div class="tools-toolbar">
+    <span class="tools-count">1 application</span>
+
+    <div class="tools-view-switch" aria-label="Application layout">
+      <button type="button" id="toolsGridView" class="active"
+              aria-pressed="true" title="Grid view">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </button>
+
+      <button type="button" id="toolsListView"
+              aria-pressed="false" title="List view">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 5h12M9 12h12M9 19h12"/>
+          <circle cx="4" cy="5" r="1"/>
+          <circle cx="4" cy="12" r="1"/>
+          <circle cx="4" cy="19" r="1"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="tools-app-grid" id="toolsAppGrid">
+    <button type="button" class="tool-app"
+            id="openWebsiteStudio">
+
+<span class="tool-app-logo">
+  <img
+    src="/website-studio.png"
+    alt="Website Studio logo"
+  >
+</span>
+
+
+      <span class="tool-app-info">
+        <strong>Website Studio</strong>
+        <span>Design and build websites with ULTRON.</span>
+      </span>
+
+      <span class="tool-app-arrow" aria-hidden="true">↗</span>
+    </button>
+  </div>
+</section>
+<section class="website-studio-page" id="websiteStudioPage" hidden>
+  <div class="studio-topbar">
+    <button type="button" id="backToTools">← Tools</button>
+    <div>
+      <h1>Website Studio</h1>
+      <p>ULTRON Web Development Engine</p>
+    </div>
+  </div>
+
+  <div class="studio-workspace">
+    <aside class="studio-controls">
+      <h2>New website</h2>
+
+      <label for="websitePrompt">Describe your idea</label>
+      <textarea
+        id="websitePrompt"
+        rows="6"
+        placeholder="Describe the website you want ULTRON to build..."
+      ></textarea>
+
+      <label for="websiteType">Project type</label>
+      <select id="websiteType">
+        <option value="landing">Landing page</option>
+        <option value="business">Business website</option>
+        <option value="portfolio">Portfolio</option>
+        <option value="dashboard">Dashboard</option>
+        <option value="ecommerce">E-commerce</option>
+        <option value="fullstack">Full-stack web application</option>
+      </select>
+
+      <label for="websiteStack">Technology</label>
+      <select id="websiteStack">
+        <option value="react-vite">React + Vite (default)</option>
+        <option value="auto">Choose automatically</option>
+      </select>
+
+      <label for="websiteBackend">Backend</label>
+      <select id="websiteBackend">
+        <option value="none">Frontend only</option>
+        <option value="node">Node.js + Express</option>
+        <option value="spring">Spring Boot</option>
+      </select>
+
+      <label for="websiteDatabase">Database</label>
+
+<select id="websiteDatabase">
+  <option value="none">No database</option>
+  <option value="postgresql">PostgreSQL</option>
+  <option value="mysql">MySQL</option>
+  <option value="h2">H2 In-Memory Database</option>
+  <option value="sqlite">SQLite</option>
+</select>
+
+
+      <button type="button" id="generateWebsite">
+        Generate website
+      </button>
+
+      <p class="studio-note">
+        Generation and preview will be enabled after connecting the build engine.
+      </p>
+    </aside>
+
+    <section class="studio-preview">
+      <div class="preview-toolbar">
+        <span>LIVE PREVIEW</span>
+        <span id="websiteBuildStatus">Waiting for project</span>
+      </div>
+
+      <div class="preview-canvas" id="websitePreview">
+        <div class="preview-placeholder">
+          <div class="preview-placeholder-icon">
+  <img src="/website-studio.png" alt="Website Studio logo">
+</div>
+          <h2>Your website starts here.</h2>
+          <p>Describe your idea to begin building.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+    <section class="chat" id="chat" aria-live="polite">
+      <div class="empty" id="empty">
+        <h1>ULTRON</h1>
+        <p id="emptySub">How can I help you?</p>
+      </div>
+      <div class="messages" id="messages"></div>
+    </section>
+    <footer class="composer-wrap">
+      <div class="notice" id="notice" hidden></div>
+      <form class="composer" id="composer">
+        <textarea id="input" rows="1" placeholder="Message ULTRON" aria-label="Message"></textarea>
+        <div class="composer-row">
+          <div class="brain">
+            <button type="button" class="chip" id="brainBtn" aria-haspopup="listbox" aria-expanded="false">Nexus &#9662;</button>
+            <ul class="menu brain-menu" id="brainMenu" role="listbox" hidden></ul>
+          </div>
+          <button type="button" class="icon-btn" disabled title="Attachments: not implemented" aria-label="Attach (unavailable)">&#128206;</button>
+          <button type="submit" class="send" id="sendBtn" aria-label="Send">&#10148;</button>
+        </div>
+      </form>
+    </footer>
+  </main>
+</div>
+
+<div class="menu ctx" id="ctx" hidden>
+  <button data-act="rename">Rename</button>
+  <button data-act="move" data-for="conv">Move to project…</button>
+  <button data-act="remove" data-for="conv" id="ctxRemove">Remove from project</button>
+  <button data-act="delete" class="danger">Delete</button>
+</div>
+
+<dialog id="dialog"><form method="dialog" id="dlgForm"><p id="dlgText"></p><input id="dlgInput" hidden><select id="dlgSelect" hidden aria-label="Choose"></select><div class="dlg-actions"><button value="cancel">Cancel</button><button value="ok" id="dlgOk">OK</button></div></form></dialog>
+
+<dialog id="settings"><form method="dialog">
+  <h2>Settings</h2>
+  <h3>Appearance</h3>
+  <div class="seg" role="radiogroup" aria-label="Theme">
+    <button type="button" data-theme="dark">Dark</button>
+    <button type="button" data-theme="light">Light</button>
+  </div>
+  <h3>Memory</h3>
+  <p class="muted">Persistent memory is not implemented in this prototype, so there is nothing to turn on or off yet. It needs a backend memory layer (Phase 6).</p>
+  <h3>Account</h3>
+  <p class="muted">Authentication is not connected. Conversations are stored only in this browser (localStorage), which is a prototype store, not multi-user persistence.</p>
+  <div class="dlg-actions"><button value="close">Close</button></div>
+</form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

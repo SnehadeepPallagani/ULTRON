@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.ultron_backups/
+*.bak
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+node_modules/
